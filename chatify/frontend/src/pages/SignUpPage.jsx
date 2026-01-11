@@ -8,7 +8,7 @@ import {
   UserIcon,
   LoaderIcon,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link } from "react-router";
 
 function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -17,12 +17,10 @@ function SignUpPage() {
     password: "",
   });
   const { signup, isSigningUp } = useAuthStore();
-  const navigate = useNavigate(); 
 
-  const handleSubmit = async (e) => { 
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const success = await signup(formData); 
-    if (success) navigate("/"); 
+    signup(formData);
   };
 
   return (
@@ -37,7 +35,9 @@ function SignUpPage() {
                   <h2 className="text-3xl font-bold text-gray-800 mb-2">
                     Create Account
                   </h2>
-                  <p className="text-gray-500">Sign up for a new account</p>
+                  <p className="text-gray-500">
+                    Sign up for a new account
+                  </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -49,7 +49,10 @@ function SignUpPage() {
                         type="text"
                         value={formData.fullName}
                         onChange={(e) =>
-                          setFormData({ ...formData, fullName: e.target.value })
+                          setFormData({
+                            ...formData,
+                            fullName: e.target.value,
+                          })
                         }
                         className="input"
                         placeholder="John Doe"
@@ -65,7 +68,10 @@ function SignUpPage() {
                         type="email"
                         value={formData.email}
                         onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
+                          setFormData({
+                            ...formData,
+                            email: e.target.value,
+                          })
                         }
                         className="input"
                         placeholder="johndoe@gmail.com"
@@ -81,7 +87,10 @@ function SignUpPage() {
                         type="password"
                         value={formData.password}
                         onChange={(e) =>
-                          setFormData({ ...formData, password: e.target.value })
+                          setFormData({
+                            ...formData,
+                            password: e.target.value,
+                          })
                         }
                         className="input"
                         placeholder="Enter your password"
