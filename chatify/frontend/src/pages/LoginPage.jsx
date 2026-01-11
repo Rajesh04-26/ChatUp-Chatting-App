@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import BorderAnimatedContainer from "../components/BorderAnimatedContainer";
-import {
-  MessageCircleIcon,
-  MailIcon,
-  LoaderIcon,
-  LockIcon,
-} from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { MessageCircleIcon, MailIcon, LoaderIcon, LockIcon } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -28,7 +24,6 @@ function LoginPage() {
       <div className="w-full max-w-5xl h-[720px]">
         <BorderAnimatedContainer>
           <div className="flex w-full h-full rounded-3xl overflow-hidden bg-white shadow-xl">
-            {/* Left side */}
             <div className="w-full md:w-1/2 flex items-center justify-center p-10">
               <div className="w-full max-w-md">
                 <div className="text-center mb-10">
@@ -36,7 +31,9 @@ function LoginPage() {
                   <h2 className="text-3xl font-bold text-gray-800 mb-2">
                     Welcome to ChatUp
                   </h2>
-                  <p className="text-gray-500">Login to your account</p>
+                  <p className="text-gray-500">
+                    Login to your account
+                  </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -46,13 +43,12 @@ function LoginPage() {
                       <MailIcon className="auth-input-icon" />
                       <input
                         type="email"
-                        className="input"
-                        placeholder="johndoe@gmail.com"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        required
+                        className="input"
+                        placeholder="johndoe@gmail.com"
                       />
                     </div>
                   </div>
@@ -63,20 +59,19 @@ function LoginPage() {
                       <LockIcon className="auth-input-icon" />
                       <input
                         type="password"
-                        className="input"
-                        placeholder="Enter your password"
                         value={formData.password}
                         onChange={(e) =>
                           setFormData({ ...formData, password: e.target.value })
                         }
-                        required
+                        className="input"
+                        placeholder="Enter your password"
                       />
                     </div>
                   </div>
 
                   <button
-                    type="submit"
                     className="auth-btn"
+                    type="submit"
                     disabled={isLoggingIn}
                   >
                     {isLoggingIn ? (
@@ -95,7 +90,6 @@ function LoginPage() {
               </div>
             </div>
 
-            {/* Right side */}
             <div className="hidden md:flex w-1/2 items-center justify-center bg-gradient-to-br from-blue-50 to-white p-10">
               <div className="text-center">
                 <img
@@ -104,7 +98,7 @@ function LoginPage() {
                   className="w-full max-w-sm mx-auto"
                 />
                 <h3 className="mt-8 text-xl font-semibold text-blue-600">
-                  "Connect with friends, anywhere, anytime!"
+                 "Connect with friends, anywhere, anytime!"
                 </h3>
                 <div className="mt-4 flex justify-center gap-3">
                   <span className="auth-badge">Instant Chat</span>

@@ -8,25 +8,19 @@ import {
   UserIcon,
   LoaderIcon,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SignUpPage() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
   });
-
   const { signup, isSigningUp } = useAuthStore();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const success = await signup(formData);
-    if (success) {
-      navigate("/");
-    }
+    signup(formData);
   };
 
   return (
@@ -34,7 +28,6 @@ function SignUpPage() {
       <div className="w-full max-w-5xl h-[720px]">
         <BorderAnimatedContainer>
           <div className="flex w-full h-full rounded-3xl overflow-hidden bg-white shadow-xl">
-            {/* Left */}
             <div className="w-full md:w-1/2 flex items-center justify-center p-10">
               <div className="w-full max-w-md">
                 <div className="text-center mb-10">
@@ -42,7 +35,9 @@ function SignUpPage() {
                   <h2 className="text-3xl font-bold text-gray-800 mb-2">
                     Create Account
                   </h2>
-                  <p className="text-gray-500">Sign up for a new account</p>
+                  <p className="text-gray-500">
+                    Sign up for a new account
+                  </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -52,8 +47,6 @@ function SignUpPage() {
                       <UserIcon className="auth-input-icon" />
                       <input
                         type="text"
-                        className="input"
-                        placeholder="John Doe"
                         value={formData.fullName}
                         onChange={(e) =>
                           setFormData({
@@ -61,7 +54,8 @@ function SignUpPage() {
                             fullName: e.target.value,
                           })
                         }
-                        required
+                        className="input"
+                        placeholder="John Doe"
                       />
                     </div>
                   </div>
@@ -72,8 +66,6 @@ function SignUpPage() {
                       <MailIcon className="auth-input-icon" />
                       <input
                         type="email"
-                        className="input"
-                        placeholder="johndoe@gmail.com"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({
@@ -81,7 +73,8 @@ function SignUpPage() {
                             email: e.target.value,
                           })
                         }
-                        required
+                        className="input"
+                        placeholder="johndoe@gmail.com"
                       />
                     </div>
                   </div>
@@ -92,8 +85,6 @@ function SignUpPage() {
                       <LockIcon className="auth-input-icon" />
                       <input
                         type="password"
-                        className="input"
-                        placeholder="Enter your password"
                         value={formData.password}
                         onChange={(e) =>
                           setFormData({
@@ -101,14 +92,15 @@ function SignUpPage() {
                             password: e.target.value,
                           })
                         }
-                        required
+                        className="input"
+                        placeholder="Enter your password"
                       />
                     </div>
                   </div>
 
                   <button
-                    type="submit"
                     className="auth-btn"
+                    type="submit"
                     disabled={isSigningUp}
                   >
                     {isSigningUp ? (
@@ -127,7 +119,6 @@ function SignUpPage() {
               </div>
             </div>
 
-            {/* Right */}
             <div className="hidden md:flex w-1/2 items-center justify-center bg-gradient-to-br from-blue-50 to-white p-10">
               <div className="text-center">
                 <img
