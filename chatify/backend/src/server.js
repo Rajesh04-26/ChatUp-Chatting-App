@@ -11,13 +11,22 @@ import { app, server } from "./lib/socket.js";
 const PORT = ENV.PORT || 3000;
 
 app.use(express.json({ limit: "5mb" }));
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+
+app.use(
+  cors({
+    origin: ENV.CLIENT_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-server.listen(PORT, () => {
-  console.log("Server running on port: " + PORT);
-  connectDB();
+server.listen(PORT, async () => {
+  console.log("Server running on port:", PORT);
+  await connectDB();
 });
